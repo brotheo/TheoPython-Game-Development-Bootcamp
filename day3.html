@@ -2,119 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day 3 – Sprites, Events, and Sound</title>
   <style>
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      padding: 40px;
-      background-color: #f9f9ff;
+      background: linear-gradient(to bottom right, #fdfbfb, #ebedee);
+      padding: 40px 60px;
       color: #333;
-      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-
     h1 {
-      text-align: center;
-      font-size: 2em;
-      color: #005f99;
-    }
-
-    h2 {
-      text-align: center;
-      color: #333;
-      font-style: italic;
-    }
-
-    h3 {
-      margin-top: 30px;
+      font-size: 2.8em;
       color: #007acc;
+      text-align: center;
+      margin-bottom: 0.3em;
     }
-
-    pre, code {
-      background-color: #e0f7fa;
-      color: #000;
-      padding: 10px;
-      display: block;
-      border-left: 5px solid #00acc1;
-      border-radius: 5px;
+    h2 {
+      font-size: 1.8em;
+      color: #ff6f00;
+      text-align: center;
+      margin-bottom: 1.2em;
+    }
+    h3 {
+      color: #007acc;
+      margin-top: 1.5em;
+    }
+    p, pre {
+      font-size: 1.1em;
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 1em;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
       overflow-x: auto;
-      font-family: monospace;
+      white-space: pre;
+      font-family: Consolas, monospace;
     }
-
-    .section {
-      margin-bottom: 30px;
+    ul {
+      font-size: 1.1em;
+      margin-left: 20px;
+      margin-bottom: 1.5em;
     }
-
     .buttons {
-      margin-top: 40px;
-      display: flex;
-      justify-content: space-between;
+      text-align: center;
+      margin-top: 30px;
     }
-
-    .buttons a {
+    .button {
       background-color: #007acc;
       color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1.2em;
       text-decoration: none;
-      font-weight: bold;
+      margin: 0 10px;
+      display: inline-block;
     }
-
-    .buttons a:hover {
+    .button:hover {
       background-color: #005b99;
     }
-
-    #full-code {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .toggle-button {
-      background-color: #ffb703;
-      color: #000;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .toggle-button:hover {
-      background-color: #faa307;
-    }
-	.footer {
-      margin-top: auto;
+    .footer {
+      margin-top: 50px;
       padding: 15px;
       font-size: 0.9em;
       color: #666;
+      text-align: center;
       border-top: 1px solid #ccc;
-	   text-align:center
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 2.2em;
+      }
+      h2 {
+        font-size: 1.4em;
+      }
+      .button {
+        font-size: 1em;
+        padding: 12px 25px;
+        margin: 10px 5px;
+      }
+    }
+    @media (max-width: 400px) {
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .button {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-
   <h1>🎮 Day 3 – Sprites, Events, and Sound</h1>
-  <h2>Theme: Bringing it to Life!</h2>
+  <h2>Theme: Bringing it to life!</h2>
 
-  <div class="section">
-    <h3>Hour 1: Load and Move Sprites</h3>
-    <p><strong>Goal:</strong> Load an image of a player and move it with arrow keys.</p>
-    <p>First, set up your game screen:</p>
-    <pre><code>import pygame
+  <h3>⏰ Hour 1: Load and Move Sprites</h3>
+  <p><strong>Goal:</strong> Load an image of a player and move it with arrow keys.</p>
+  <pre>import pygame
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("My First Game")
-clock = pygame.time.Clock()</code></pre>
-
-    <p>Load the player image:</p>
-    <pre><code>player_image = pygame.image.load('player.png')
+clock = pygame.time.Clock()</pre>
+  <p>Now load the player image:</p>
+  <pre>player_image = pygame.image.load('player.png')
 player_rect = player_image.get_rect()
-player_rect.topleft = (100, 100)</code></pre>
-
-    <p>Move the sprite with arrow keys:</p>
-    <pre><code>speed = 5
+player_rect.topleft = (100, 100)</pre>
+  <p>Move the sprite with arrow keys:</p>
+  <pre>speed = 5
 running = True
 
 while running:
@@ -131,127 +137,44 @@ while running:
     screen.fill((0, 0, 0))
     screen.blit(player_image, player_rect)
     pygame.display.flip()
-    clock.tick(60)</code></pre>
-  </div>
+    clock.tick(60)</pre>
 
-  <div class="section">
-    <h3>Hour 2: Obstacles and Boundaries</h3>
-    <p><strong>Goal:</strong> Prevent the player from going off screen and add obstacles.</p>
-    <p>Prevent movement off screen:</p>
-    <pre><code>if player_rect.left < 0:
+  <h3>⏰ Hour 2: Obstacles and Boundaries</h3>
+  <p>Prevent the player from going off screen:</p>
+  <pre>if player_rect.left < 0:
     player_rect.left = 0
 if player_rect.right > 800:
     player_rect.right = 800
 if player_rect.top < 0:
     player_rect.top = 0
 if player_rect.bottom > 600:
-    player_rect.bottom = 600</code></pre>
+    player_rect.bottom = 600</pre>
+  <p>Create a simple enemy block:</p>
+  <pre>enemy = pygame.Rect(300, 300, 50, 50)
+pygame.draw.rect(screen, (255, 0, 0), enemy)</pre>
+  <p>Detect collision:</p>
+  <pre>if player_rect.colliderect(enemy):
+    print("Collision!")</pre>
 
-    <p>Create a simple enemy block:</p>
-    <pre><code>enemy = pygame.Rect(300, 300, 50, 50)
-pygame.draw.rect(screen, (255, 0, 0), enemy)</code></pre>
-
-    <p>Detect collision:</p>
-    <pre><code>if player_rect.colliderect(enemy):
-    print("Collision!")</code></pre>
-  </div>
-
-  <div class="section">
-    <h3>Hour 3: Sound and Score</h3>
-    <p><strong>Goal:</strong> Add sound and score when player touches something.</p>
-    <p>Load and play a sound:</p>
-    <pre><code>sound = pygame.mixer.Sound("beep.wav")
-sound.play()</code></pre>
-
-    <p>Track and update score:</p>
-    <pre><code>score = 0
+  <h3>⏰ Hour 3: Sound and Score</h3>
+  <p>Load and play a sound:</p>
+  <pre>sound = pygame.mixer.Sound("beep.wav")
+sound.play()</pre>
+  <p>Track score when a collision happens:</p>
+  <pre>score = 0
 if player_rect.colliderect(enemy):
-    score += 1</code></pre>
-
-    <p>Display score on screen:</p>
-    <pre><code>font = pygame.font.Font(None, 36)
+    score += 1</pre>
+  <p>Display the score:</p>
+  <pre>font = pygame.font.Font(None, 36)
 score_text = font.render("Score: " + str(score), True, (255, 255, 255))
-screen.blit(score_text, (10, 10))</code></pre>
-  </div>
-
-  <button class="toggle-button" onclick="toggleCode()">📂 Show Complete Code Structure</button>
-
-  <div id="full-code">
-    <h3>📄 Complete Game Example</h3>
-    <pre><code>import pygame
-import sys
-
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("Sprite Game")
-clock = pygame.time.Clock()
-
-player_image = pygame.image.load("player.png")
-player_rect = player_image.get_rect()
-player_rect.topleft = (100, 100)
-enemy = pygame.Rect(300, 300, 50, 50)
-
-score = 0
-font = pygame.font.Font(None, 36)
-sound = pygame.mixer.Sound("beep.wav")
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]: player_rect.x -= 5
-    if keys[pygame.K_RIGHT]: player_rect.x += 5
-    if keys[pygame.K_UP]: player_rect.y -= 5
-    if keys[pygame.K_DOWN]: player_rect.y += 5
-
-    # Stay in bounds
-    if player_rect.left < 0: player_rect.left = 0
-    if player_rect.right > 800: player_rect.right = 800
-    if player_rect.top < 0: player_rect.top = 0
-    if player_rect.bottom > 600: player_rect.bottom = 600
-
-    # Collision
-    if player_rect.colliderect(enemy):
-        sound.play()
-        score += 1
-        enemy.x, enemy.y = 100, 100  # Move enemy
-
-    screen.fill((0, 0, 0))
-    screen.blit(player_image, player_rect)
-    pygame.draw.rect(screen, (255, 0, 0), enemy)
-
-    score_text = font.render("Score: " + str(score), True, (255, 255, 255))
-    screen.blit(score_text, (10, 10))
-
-    pygame.display.flip()
-    clock.tick(60)
-
-pygame.quit()
-sys.exit()</code></pre>
-  </div>
+screen.blit(score_text, (10, 10))</pre>
 
   <div class="buttons">
-    <a href="day2.html">⬅️ Previous Page (Day 2)</a>
-    <a href="day4.html">Next Page (Day 4) ➡️</a>
+    <a href="day2.html" class="button">⬅️ Previous: Day 2</a>
+    <a href="day4.html" class="button">➡️ Next: Day 4</a>
   </div>
 
-  <script>
-    function toggleCode() {
-      const codeBlock = document.getElementById("full-code");
-      const button = document.querySelector(".toggle-button");
-      if (codeBlock.style.display === "none") {
-        codeBlock.style.display = "block";
-        button.textContent = "📁 Hide Complete Code Structure";
-      } else {
-        codeBlock.style.display = "none";
-        button.textContent = "📂 Show Complete Code Structure";
-      }
-    }
-  </script>
-<div class="footer">
+  <div class="footer">
     Developed by Teacher Theo
   </div>
 </body>
