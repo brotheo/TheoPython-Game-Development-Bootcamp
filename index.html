@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Welcome to Zoe's Python Game Development Bootcamp</title>
   <style>
     body {
@@ -10,16 +11,19 @@
       padding: 40px;
       color: #333;
       text-align: center;
+      margin: 0;
     }
 
     h1 {
       font-size: 3em;
       color: #007acc;
+      margin-bottom: 0.2em;
     }
 
     h2 {
       font-size: 1.8em;
-      margin-top: 10px;
+      margin-top: 0;
+      margin-bottom: 1em;
       color: #ff6f00;
     }
 
@@ -27,13 +31,16 @@
       font-size: 1.2em;
       margin: 20px auto;
       max-width: 800px;
+      line-height: 1.4;
+      padding: 0 15px;
     }
 
     ul {
       text-align: left;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 0 auto 1.5em;
       font-size: 1.1em;
+      padding: 0 15px;
     }
 
     .button {
@@ -53,13 +60,60 @@
     .button:hover {
       background-color: #005b99;
     }
-	.footer {
-      margin-top: auto;
+
+    .button + .button {
+      margin-left: 15px;
+    }
+
+    .footer {
+      margin-top: 50px;
       padding: 15px;
       font-size: 0.9em;
       color: #666;
       border-top: 1px solid #ccc;
-	   text-align:center
+      text-align: center;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 2.2em;
+      }
+      h2 {
+        font-size: 1.4em;
+      }
+      p, ul {
+        font-size: 1em;
+        max-width: 100%;
+      }
+      .button {
+        padding: 12px 20px;
+        font-size: 1em;
+        margin-top: 20px;
+      }
+      .button + .button {
+        margin-left: 10px;
+      }
+      ul {
+        padding-left: 20px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.2em;
+      }
+      .button {
+        display: block;
+        width: 100%;
+        margin: 15px 0 0 0 !important;
+      }
     }
   </style>
 </head>
@@ -90,10 +144,12 @@
     </ul>
 
     <a href="day1.html" class="button">🚀 Start Day 1</a>
-    <a href="quiz.html" class="button" style="background-color:#ff6f00; margin-left: 15px;">📝 Take the Quiz</a>
+    <a href="quiz.html" class="button" style="background-color:#ff6f00;">📝 Take the Quiz</a>
   </div>
-<div class="footer">
+
+  <div class="footer">
     Developed by Teacher Theo
   </div>
+
 </body>
 </html>
