@@ -2,122 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day 4 – Game Features and Effects</title>
   <style>
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      padding: 40px;
-      background-color: #f9f9ff;
+      background: linear-gradient(to bottom right, #f0faff, #fff3e0);
+      padding: 40px 60px;
       color: #333;
-      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-
     h1 {
-      text-align: center;
-      font-size: 2em;
-      color: #005f99;
-    }
-
-    h2 {
-      text-align: center;
-      color: #333;
-      font-style: italic;
-    }
-
-    h3 {
-      margin-top: 30px;
+      font-size: 2.8em;
       color: #007acc;
+      text-align: center;
+      margin-bottom: 0.3em;
     }
-
-    p {
-      margin: 10px 0;
+    h2 {
+      font-size: 1.8em;
+      color: #ff6f00;
+      text-align: center;
+      margin-bottom: 1.2em;
     }
-
-    pre, code {
-      background-color: #e0f7fa;
-      color: #000;
-      padding: 10px;
-      display: block;
-      border-left: 5px solid #00acc1;
-      border-radius: 5px;
+    h3 {
+      color: #007acc;
+      margin-top: 1.5em;
+    }
+    p, pre {
+      font-size: 1.1em;
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 1em;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
       overflow-x: auto;
-      font-family: monospace;
+      white-space: pre;
+      font-family: Consolas, monospace;
     }
-
     .buttons {
-      margin-top: 40px;
-      display: flex;
-      justify-content: space-between;
+      text-align: center;
+      margin-top: 30px;
     }
-
-    .buttons a {
+    .button {
       background-color: #007acc;
       color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1.2em;
       text-decoration: none;
-      font-weight: bold;
+      margin: 0 10px;
+      display: inline-block;
     }
-
-    .buttons a:hover {
+    .button:hover {
       background-color: #005b99;
     }
-
-    #full-code {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .toggle-button {
-      background-color: #ffb703;
-      color: #000;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .toggle-button:hover {
-      background-color: #faa307;
-    }
-	.footer {
-      margin-top: auto;
+    .footer {
+      margin-top: 50px;
       padding: 15px;
       font-size: 0.9em;
       color: #666;
+      text-align: center;
       border-top: 1px solid #ccc;
-	   text-align:center
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 2.2em;
+      }
+      h2 {
+        font-size: 1.4em;
+      }
+      .button {
+        font-size: 1em;
+        padding: 12px 25px;
+        margin: 10px 5px;
+      }
+    }
+    @media (max-width: 400px) {
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .button {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-
   <h1>🎮 Day 4 – Game Features and Effects</h1>
-  <h2>Theme: Making it a Real Game!</h2>
+  <h2>Theme: Making it a real game!</h2>
 
-  <h3>Hour 1: Collision Detection</h3>
+  <h3>⏰ Hour 1: Collision Detection</h3>
   <p>Use <code>colliderect()</code> to detect collisions between objects:</p>
-  <pre><code>if player_rect.colliderect(enemy_rect):
-    print("Collision!")</code></pre>
-  <p>This checks if the player's rectangle overlaps with the enemy's.</p>
+  <pre>if player_rect.colliderect(enemy_rect):
+    print("Collision!")</pre>
 
-  <h3>Hour 2: Create Levels or Challenges</h3>
-  <p><strong>Speed Increase:</strong> Gradually increase difficulty over time:</p>
-  <pre><code>speed += 0.01</code></pre>
-
-  <p><strong>Timer and Win Condition:</strong> Add a win timer with Pygame:</p>
-  <pre><code>start_ticks = pygame.time.get_ticks()
+  <h3>⏰ Hour 2: Create Levels or Challenges</h3>
+  <p><strong>Speed Increase:</strong></p>
+  <pre>speed += 0.01</pre>
+  <p><strong>Timer and Win Condition:</strong></p>
+  <pre>start_ticks = pygame.time.get_ticks()
 
 # Inside the game loop
 seconds = (pygame.time.get_ticks() - start_ticks) // 1000
 if seconds >= 30:
-    print("You Win!")</code></pre>
+    print("You Win!")</pre>
 
-  <h3>Hour 3: Polish and Design</h3>
+  <h3>⏰ Hour 3: Polish and Design</h3>
   <p><strong>Start Screen:</strong></p>
-  <pre><code>waiting = True
+  <pre>waiting = True
 while waiting:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
@@ -125,108 +128,21 @@ while waiting:
     screen.fill((0, 0, 0))
     title = font.render("Press Any Key to Start", True, (255, 255, 255))
     screen.blit(title, (200, 300))
-    pygame.display.flip()</code></pre>
+    pygame.display.flip()</pre>
 
   <p><strong>Game Over Screen:</strong></p>
-  <pre><code>screen.fill((0, 0, 0))
+  <pre>screen.fill((0, 0, 0))
 game_over_text = font.render("Game Over", True, (255, 0, 0))
 screen.blit(game_over_text, (300, 300))
 pygame.display.flip()
-pygame.time.wait(3000)</code></pre>
-  <p>This displays a "Game Over" message for 3 seconds before quitting or restarting.</p>
-
-  <!-- Toggle Button -->
-  <button class="toggle-button" onclick="toggleCode()">📂 Show Complete Code Structure</button>
-
-  <!-- Hidden Complete Code Section -->
-  <div id="full-code">
-    <h3>📄 Full Example Game Structure</h3>
-    <pre><code>import pygame
-import random
-import sys
-
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("Mini Game")
-clock = pygame.time.Clock()
-
-WHITE = (255, 255, 255)
-BLUE = (50, 130, 255)
-RED = (255, 50, 50)
-
-player = pygame.Rect(375, 500, 50, 50)
-player_speed = 7
-
-enemy = pygame.Rect(random.randint(0, 750), 0, 50, 50)
-enemy_speed = 5
-
-font = pygame.font.Font(None, 36)
-start_ticks = pygame.time.get_ticks()
-
-game_running = True
-while game_running:
-    screen.fill(WHITE)
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game_running = False
-
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT] and player.left > 0:
-        player.x -= player_speed
-    if keys[pygame.K_RIGHT] and player.right < 800:
-        player.x += player_speed
-
-    enemy.y += enemy_speed
-    if enemy.y > 600:
-        enemy.y = 0
-        enemy.x = random.randint(0, 750)
-
-    if player.colliderect(enemy):
-        screen.fill((0, 0, 0))
-        game_over = font.render("Game Over", True, RED)
-        screen.blit(game_over, (300, 300))
-        pygame.display.flip()
-        pygame.time.wait(3000)
-        game_running = False
-
-    seconds = (pygame.time.get_ticks() - start_ticks) // 1000
-    if seconds >= 30:
-        win = font.render("You Win!", True, (0, 200, 0))
-        screen.blit(win, (320, 280))
-        pygame.display.flip()
-        pygame.time.wait(3000)
-        game_running = False
-
-    pygame.draw.rect(screen, BLUE, player)
-    pygame.draw.rect(screen, RED, enemy)
-    pygame.display.flip()
-    clock.tick(60)
-
-pygame.quit()
-sys.exit()</code></pre>
-  </div>
+pygame.time.wait(3000)</pre>
 
   <div class="buttons">
-    <a href="day3.html">⬅️ Previous Page (Day 3)</a>
-    <a href="day5.html">Next Page (Day 5) ➡️</a>
+    <a href="day3.html" class="button">⬅️ Previous: Day 3</a>
+    <a href="day5.html" class="button">➡️ Next: Day 5</a>
   </div>
 
-  <!-- JavaScript to Toggle Visibility -->
-  <script>
-    function toggleCode() {
-      const codeBlock = document.getElementById("full-code");
-      const button = document.querySelector(".toggle-button");
-      if (codeBlock.style.display === "none") {
-        codeBlock.style.display = "block";
-        button.textContent = "📁 Hide Complete Code Structure";
-      } else {
-        codeBlock.style.display = "none";
-        button.textContent = "📂 Show Complete Code Structure";
-      }
-    }
-  </script>
-<div class="footer">
+  <div class="footer">
     Developed by Teacher Theo
   </div>
 </body>
