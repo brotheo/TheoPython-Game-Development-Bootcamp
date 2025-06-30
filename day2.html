@@ -1,94 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Day 2 – Building Logic and Fun with Graphics</title>
   <style>
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      padding: 40px;
-      background-color: #f9f9ff;
+      background: linear-gradient(to bottom right, #e0f7fa, #fff8e1);
+      padding: 40px 60px;
       color: #333;
-      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.5;
     }
-
     h1 {
+      font-size: 2.8em;
+      color: #007acc;
       text-align: center;
-      font-size: 2em;
-      color: #005f99;
+      margin-bottom: 0.3em;
     }
-
     h2 {
+      font-size: 1.8em;
+      color: #ff6f00;
+      margin-top: 0;
+      margin-bottom: 0.8em;
       text-align: center;
-      font-style: italic;
-      color: #333;
     }
-
     h3 {
-      margin-top: 30px;
+      color: #007acc;
+      margin-top: 1.5em;
+      margin-bottom: 0.6em;
+    }
+    p, pre {
+      font-size: 1.1em;
+      max-width: 100%;
+      margin-bottom: 1em;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #f7fbfc;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: inset 0 0 5px #cce7f0;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      overflow-x: auto;
+      white-space: pre;
+      font-family: Consolas, monospace;
+      padding: 15px 20px;
+    }
+    strong {
       color: #007acc;
     }
-
-    pre, code {
-      background-color: #e0f7fa;
-      color: #000;
-      padding: 10px;
-      display: block;
-      border-left: 5px solid #00acc1;
-      border-radius: 5px;
-      overflow-x: auto;
-      font-family: monospace;
+    ul {
+      margin-left: 20px;
+      margin-bottom: 1.5em;
+      font-size: 1.1em;
+      color: #444;
     }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
+    /* Buttons container */
     .buttons {
-      margin-top: 40px;
-      display: flex;
-      justify-content: space-between;
+      text-align: center;
+      margin-top: 30px;
     }
-
-    .buttons a {
+    .button {
       background-color: #007acc;
       color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2em;
       text-decoration: none;
-      font-weight: bold;
+      cursor: pointer;
+      margin: 0 10px;
+      display: inline-block;
+      transition: background-color 0.3s ease;
     }
-
-    .buttons a:hover {
+    .button:hover {
       background-color: #005b99;
     }
-
-    #full-code {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .toggle-button {
-      background-color: #ffb703;
-      color: #000;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .toggle-button:hover {
-      background-color: #faa307;
-    }
-	.footer {
-      margin-top: auto;
+    .footer {
+      margin-top: 50px;
       padding: 15px;
       font-size: 0.9em;
       color: #666;
       border-top: 1px solid #ccc;
-	   text-align:center
+      text-align: center;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 2.2em;
+      }
+      h2 {
+        font-size: 1.4em;
+      }
+      p, pre, ul {
+        font-size: 1em;
+      }
+      .button {
+        padding: 12px 25px;
+        font-size: 1em;
+        margin: 5px 5px;
+      }
+    }
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.1em;
+      }
+      p, pre, ul {
+        font-size: 0.95em;
+      }
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .button {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -97,46 +137,43 @@
   <h1>🎮 Day 2 – Building Logic and Fun with Graphics</h1>
   <h2>Theme: From Text to Visuals!</h2>
 
-  <div class="section">
-    <h3>⏰ Hour 1: Lists and Dictionaries</h3>
-    <p><strong>🎯 Objective:</strong> Understand how to store and loop through collections of data using lists and dictionaries.</p>
+  <h3>⏰ Hour 1: Lists and Dictionaries</h3>
+  <p><strong>🎯 Objective:</strong> Understand how to store and loop through collections of data using lists and dictionaries.</p>
 
-    <p><strong>Concepts:</strong></p>
-    <ul>
-      <li>List: Ordered collection of values</li>
-      <li>Dictionary: Key-value pair storage</li>
-      <li>Looping using <code>for</code> loops</li>
-    </ul>
+  <p><strong>Concepts:</strong></p>
+  <ul>
+    <li>List: Ordered collection of values</li>
+    <li>Dictionary: Key-value pair storage</li>
+    <li>Looping through both using for loops</li>
+  </ul>
 
-    <p><strong>🛒 Sample Code – List of Items:</strong></p>
-    <pre><code>shopping_list = ["apples", "bananas", "oranges"]
+  <p>🛒 Sample Code 1 – List of Items</p>
+  <pre>shopping_list = ["apples", "bananas", "oranges"]
 
 for item in shopping_list:
-    print("I need to buy:", item)</code></pre>
+    print("I need to buy:", item)</pre>
 
-    <p><strong>🧑‍🚀 Sample Code – Dictionary of Players:</strong></p>
-    <pre><code>player_scores = {
+  <p>🧑‍🚀 Sample Code 2 – Dictionary of Players</p>
+  <pre>player_scores = {
     "Zoe": 10,
     "Alex": 15,
     "Mia": 20
 }
 
 for name, score in player_scores.items():
-    print(name, "scored", score, "points")</code></pre>
-  </div>
+    print(name, "scored", score, "points")</pre>
 
-  <div class="section">
-    <h3>⏰ Hour 2: Introduction to Pygame</h3>
-    <p><strong>🎯 Objective:</strong> Learn to install and run a basic pygame window with background color.</p>
+  <h3>⏰ Hour 2: Introduction to Pygame</h3>
+  <p><strong>🎯 Objective:</strong> Learn to install and run a basic pygame window with a background color.</p>
 
-    <p><strong>Steps:</strong></p>
-    <ul>
-      <li>Install pygame: <code>pip install pygame</code></li>
-      <li>Use <code>pygame.init()</code> and <code>screen.fill()</code> to show color</li>
-    </ul>
+  <p><strong>Steps:</strong></p>
+  <ul>
+    <li>Install pygame: <code>pip install pygame</code></li>
+    <li>Create a basic window using <code>pygame.init()</code></li>
+  </ul>
 
-    <p><strong>🪟 Sample Code – Create a Pygame Window:</strong></p>
-    <pre><code>import pygame
+  <p>🪟 Sample Code – Create Pygame Window</p>
+  <pre>import pygame
 import sys
 
 pygame.init()
@@ -153,21 +190,19 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
-sys.exit()</code></pre>
-  </div>
+sys.exit()</pre>
 
-  <div class="section">
-    <h3>⏰ Hour 3: Drawing Shapes & Movement</h3>
-    <p><strong>🎯 Objective:</strong> Draw shapes and make them move with keyboard input.</p>
+  <h3>⏰ Hour 3: Drawing Shapes & Movement</h3>
+  <p><strong>🎯 Objective:</strong> Draw basic shapes and make them move with keyboard input.</p>
 
-    <p><strong>Concepts:</strong></p>
-    <ul>
-      <li>Draw shapes: <code>pygame.draw.rect()</code>, <code>pygame.draw.circle()</code></li>
-      <li>Use <code>pygame.KEYDOWN</code> or <code>pygame.key.get_pressed()</code> for input</li>
-    </ul>
+  <p><strong>Concepts:</strong></p>
+  <ul>
+    <li>Draw shapes: <code>pygame.draw.rect()</code>, <code>pygame.draw.circle()</code></li>
+    <li>Handle keyboard input: <code>pygame.KEYDOWN</code>, <code>pygame.key.get_pressed()</code></li>
+  </ul>
 
-    <p><strong>⚽ Sample Code – Move a Circle:</strong></p>
-    <pre><code>import pygame
+  <p>⚽ Sample Code – Move a Circle</p>
+  <pre>import pygame
 import sys
 
 pygame.init()
@@ -202,81 +237,23 @@ while running:
     clock.tick(60)
 
 pygame.quit()
-sys.exit()</code></pre>
-  </div>
+sys.exit()</pre>
 
-  <div class="section">
-    <h3>🚀 Extension Activity Ideas</h3>
-    <ul>
-      <li>Add more shapes (rectangle, ellipse)</li>
-      <li>Change shape color with keypress</li>
-      <li>Prevent the shape from leaving the screen</li>
-    </ul>
-  </div>
-
-  <button class="toggle-button" onclick="toggleCode()">📂 Show Complete Code Structure</button>
-
-  <div id="full-code">
-    <h3>📄 Complete Code Example</h3>
-    <pre><code>import pygame
-import sys
-
-pygame.init()
-screen = pygame.display.set_mode((600, 400))
-pygame.display.set_caption("Move the Circle")
-clock = pygame.time.Clock()
-
-x, y = 300, 200
-radius = 30
-speed = 5
-color = (255, 0, 0)
-
-running = True
-while running:
-    screen.fill((135, 206, 250))
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT] and x - radius > 0:
-        x -= speed
-    if keys[pygame.K_RIGHT] and x + radius < 600:
-        x += speed
-    if keys[pygame.K_UP] and y - radius > 0:
-        y -= speed
-    if keys[pygame.K_DOWN] and y + radius < 400:
-        y += speed
-
-    pygame.draw.circle(screen, color, (x, y), radius)
-    pygame.display.flip()
-    clock.tick(60)
-
-pygame.quit()
-sys.exit()</code></pre>
-  </div>
+  <h3>🚀 Extension Activity Ideas</h3>
+  <ul>
+    <li>Add more shapes (rectangle, ellipse)</li>
+    <li>Change shape color with keypress</li>
+    <li>Prevent shape from moving off the screen</li>
+  </ul>
 
   <div class="buttons">
-    <a href="day1.html">⬅️ Previous Page (Day 1)</a>
-    <a href="day3.html">Next Page (Day 3) ➡️</a>
+    <a href="day1.html" class="button">⬅️ Previous: Day 1</a>
+    <a href="day3.html" class="button">➡️ Next: Day 3</a>
   </div>
 
-  <script>
-    function toggleCode() {
-      const codeBlock = document.getElementById("full-code");
-      const button = document.querySelector(".toggle-button");
-      if (codeBlock.style.display === "none") {
-        codeBlock.style.display = "block";
-        button.textContent = "📁 Hide Complete Code Structure";
-      } else {
-        codeBlock.style.display = "none";
-        button.textContent = "📂 Show Complete Code Structure";
-      }
-    }
-  </script>
-<div class="footer">
+  <div class="footer">
     Developed by Teacher Theo
   </div>
+
 </body>
 </html>
