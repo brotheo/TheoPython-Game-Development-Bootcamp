@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Python Game Dev Bootcamp Quiz</title>
+<style>
+  body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: #f0faff;
+    padding: 40px;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #007acc;
+  }
+  #quiz-container {
+    max-width: 700px;
+    margin: 30px auto;
+    background: #e0f7fa;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px #aaa;
+  }
+  #question {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  .option {
+    background: white;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .option:hover {
+    border-color: #007acc;
+  }
+  .option.selected {
+    background-color: #007acc;
+    color: white;
+  }
+  #next-btn {
+    margin-top: 20px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #next-btn:disabled {
+    background-color: #7dbfe5;
+    cursor: not-allowed;
+  }
+  #result {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 25px;
+    color: #007acc;
+  }
+  #restart-btn {
+    margin-top: 15px;
+    background-color: #ffa000;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+    display: none;
+  }
+  .footer {
+      margin-top: auto;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #666;
+      border-top: 1px solid #ccc;
+	  text-align:center
+    }
+	
+	.buttons {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .buttons a {
+      background-color: #007acc;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .buttons a:hover {
+      background-color: #005b99;
+    }
+
+</style>
+</head>
+<body>
+
+<h1>📝 Python Game Dev Bootcamp Quiz</h1>
+<div id="quiz-container">
+  <div id="question"></div>
+  <div id="options"></div>
+  <button id="next-btn" disabled>Next</button>
+  <div id="result"></div>
+  <button id="restart-btn">Restart Quiz</button>
+</div>
+
+<script>
+  const quizData = [
+    {
+      question: "1. What does 'print()' do in Python?",
+      options: ["Store a value", "Display output", "Take user input", "Create a loop"],
+      answer: 1
+    },
+    {
+      question: "2. Which symbol is used for comments in Python?",
+      options: ["//", "#", "/* */", "<!-- -->"],
+      answer: 1
+    },
+    {
+      question: "3. What is a list in Python?",
+      options: ["Unordered collection", "Ordered collection", "Key-value pair", "Function"],
+      answer: 1
+    },
+    {
+      question: "4. How do you import the pygame library?",
+      options: ["import pygame", "from pygame import *", "include pygame", "using pygame"],
+      answer: 0
+    },
+    {
+      question: "5. Which method sets the size of the pygame window?",
+      options: ["pygame.set_size()", "pygame.window()", "pygame.display.set_mode()", "pygame.screen_size()"],
+      answer: 2
+    },
+    {
+      question: "6. Which data type stores key-value pairs?",
+      options: ["List", "Dictionary", "Tuple", "Set"],
+      answer: 1
+    },
+    {
+      question: "7. What does 'pygame.display.flip()' do?",
+      options: ["Closes the window", "Updates the display", "Starts the game loop", "Draws a shape"],
+      answer: 1
+    },
+    {
+      question: "8. How do you create a loop that repeats 5 times in Python?",
+      options: [
+        "for i in range(5):",
+        "while i < 5:",
+        "repeat 5 times",
+        "loop 5 times"
+      ],
+      answer: 0
+    },
+    {
+      question: "9. What function reads user input?",
+      options: ["input()", "read()", "scan()", "get()"],
+      answer: 0
+    },
+    {
+      question: "10. Which symbol is used for exponentiation (power) in Python?",
+      options: ["^", "**", "%", "//"],
+      answer: 1
+    },
+    {
+      question: "11. Which pygame event means the window was closed?",
+      options: ["pygame.QUIT", "pygame.CLOSE", "pygame.EXIT", "pygame.STOP"],
+      answer: 0
+    },
+    {
+      question: "12. Which of these is NOT a valid Python variable name?",
+      options: ["my_var", "2nd_var", "var_3", "_var"],
+      answer: 1
+    },
+    {
+      question: "13. What color is represented by (255, 0, 0) in pygame?",
+      options: ["Blue", "Green", "Red", "Black"],
+      answer: 2
+    },
+    {
+      question: "14. Which Python keyword defines a function?",
+      options: ["func", "define", "def", "function"],
+      answer: 2
+    },
+    {
+      question: "15. How do you check if two rectangles collide in pygame?",
+      options: ["rect1.overlaps(rect2)", "rect1.colliderect(rect2)", "collide(rect1, rect2)", "rect1.collision(rect2)"],
+      answer: 1
+    },
+    {
+      question: "16. What does the 'break' statement do in a loop?",
+      options: ["Skips one iteration", "Ends the loop", "Starts the loop", "Repeats the loop"],
+      answer: 1
+    },
+    {
+      question: "17. What is the correct way to increment a variable 'count' by 1?",
+      options: ["count + 1", "count += 1", "count =+ 1", "count = count - 1"],
+      answer: 1
+    },
+    {
+      question: "18. Which function converts a string to an integer?",
+      options: ["int()", "str()", "float()", "convert()"],
+      answer: 0
+    },
+    {
+      question: "19. What is the pygame function to draw a circle?",
+      options: ["pygame.draw.circle()", "pygame.draw.rect()", "pygame.draw.square()", "pygame.circle()"],
+      answer: 0
+    },
+    {
+      question: "20. What command ends a pygame program safely?",
+      options: ["pygame.stop()", "pygame.quit()", "exit()", "quit()"],
+      answer: 1
+    }
+  ];
+
+  let currentQuestion = 0;
+  let score = 0;
+  const questionEl = document.getElementById('question');
+  const optionsEl = document.getElementById('options');
+  const nextBtn = document.getElementById('next-btn');
+  const resultEl = document.getElementById('result');
+  const restartBtn = document.getElementById('restart-btn');
+
+  function loadQuestion() {
+    nextBtn.disabled = true;
+    resultEl.textContent = '';
+    const q = quizData[currentQuestion];
+    questionEl.textContent = q.question;
+    optionsEl.innerHTML = '';
+    q.options.forEach((option, index) => {
+      const div = document.createElement('div');
+      div.classList.add('option');
+      div.textContent = option;
+      div.addEventListener('click', () => selectOption(index, div));
+      optionsEl.appendChild(div);
+    });
+  }
+
+  function selectOption(index, element) {
+    const options = document.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    nextBtn.disabled = false;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    const selected = document.querySelector('.option.selected');
+    if (!selected) return;
+    const answerIndex = quizData[currentQuestion].answer;
+    const userAnswer = Array.from(optionsEl.children).indexOf(selected);
+    if (userAnswer === answerIndex) score++;
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+      loadQuestion();
+    } else {
+      showResult();
+    }
+  });
+
+  function showResult() {
+    questionEl.textContent = '';
+    optionsEl.innerHTML = '';
+    nextBtn.style.display = 'none';
+    resultEl.textContent = `🎉 You scored ${score} out of ${quizData.length}!`;
+    restartBtn.style.display = 'inline-block';
+  }
+
+  restartBtn.addEventListener('click', () => {
+    currentQuestion = 0;
+    score = 0;
+    nextBtn.style.display = 'inline-block';
+    restartBtn.style.display = 'none';
+    loadQuestion();
+  });
+
+  // Initialize quiz
+  loadQuestion();
+</script>
+<div class="buttons">
+  <a href="index.html">📝 Homepage</a>
+</div>
+
+
+<div class="footer">
+    Developed by Teacher Theo
+  </div>
+</body>
+</html>
