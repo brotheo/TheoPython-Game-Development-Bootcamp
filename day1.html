@@ -1,201 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Day 1 – Getting Started with Python</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 1 – Getting Started with Python & Simple Games</title>
   <style>
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      padding: 40px;
-      background-color: #f9f9ff;
+      background: linear-gradient(to bottom right, #e0f7fa, #fff8e1);
+      padding: 40px 60px;
       color: #333;
-      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.5;
     }
-
     h1 {
+      font-size: 2.8em;
+      color: #007acc;
       text-align: center;
-      font-size: 2em;
-      color: #005f99;
+      margin-bottom: 0.3em;
     }
-
     h2 {
+      font-size: 1.8em;
+      color: #ff6f00;
+      margin-top: 0;
+      margin-bottom: 0.8em;
       text-align: center;
-      color: #333;
-      font-style: italic;
     }
-
     h3 {
-      margin-top: 30px;
+      color: #007acc;
+      margin-top: 1.5em;
+      margin-bottom: 0.6em;
+    }
+    p, pre {
+      font-size: 1.1em;
+      max-width: 100%;
+      margin-bottom: 1em;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #f7fbfc;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: inset 0 0 5px #cce7f0;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      overflow-x: auto;
+      white-space: pre;
+      font-family: Consolas, monospace;
+      padding: 15px 20px;
+    }
+    strong {
       color: #007acc;
     }
-
-    pre, code {
-      background-color: #e0f7fa;
-      color: #000;
-      padding: 10px;
-      display: block;
-      border-left: 5px solid #00acc1;
-      border-radius: 5px;
-      overflow-x: auto;
-      font-family: monospace;
+    ul {
+      margin-left: 20px;
+      margin-bottom: 1.5em;
+      font-size: 1.1em;
+      color: #444;
     }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
+    /* Buttons container */
     .buttons {
-      margin-top: 40px;
-      display: flex;
-      justify-content: space-between;
+      text-align: center;
+      margin-top: 30px;
     }
-
-    .buttons a {
+    .button {
       background-color: #007acc;
       color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2em;
       text-decoration: none;
-      font-weight: bold;
+      cursor: pointer;
+      margin: 0 10px;
+      display: inline-block;
+      transition: background-color 0.3s ease;
     }
-
-    .buttons a:hover {
+    .button:hover {
       background-color: #005b99;
     }
-
-    #full-code {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .toggle-button {
-      background-color: #ffb703;
-      color: #000;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .toggle-button:hover {
-      background-color: #faa307;
-    }
-	.footer {
-      margin-top: auto;
+    .footer {
+      margin-top: 50px;
       padding: 15px;
       font-size: 0.9em;
       color: #666;
       border-top: 1px solid #ccc;
-	   text-align:center
+      text-align: center;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 2.2em;
+      }
+      h2 {
+        font-size: 1.4em;
+      }
+      p, pre, ul {
+        font-size: 1em;
+      }
+      .button {
+        padding: 12px 25px;
+        font-size: 1em;
+        margin: 5px 5px;
+      }
+    }
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.1em;
+      }
+      p, pre, ul {
+        font-size: 0.95em;
+      }
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .button {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>🐍 Day 1 – Getting Started with Python & Simple Games</h1>
-  <h2>Theme: From Zero to Python Hero!</h2>
+  <h1>Day 1 – Getting Started with Python & Simple Games</h1>
+  <h2>🎯 Goal: Understand the building blocks of Python programming.</h2>
 
-  <div class="section">
-    <h3>⏰ Hour 1: Python Basics</h3>
-    <p><strong>🎯 Goal:</strong> Understand the building blocks of Python programming.</p>
+  <h3>✅ What is Python? Why is it so popular?</h3>
+  <p>Python is a beginner-friendly, powerful programming language used in:</p>
+  <ul>
+    <li>Web development 🌐</li>
+    <li>Data Science 📊</li>
+    <li>Game Development 🎮</li>
+    <li>Artificial Intelligence 🤖</li>
+  </ul>
 
-    <p><strong>✅ What is Python? Why is it so popular?</strong></p>
-    <ul>
-      <li>Web development 🌐</li>
-      <li>Data Science 📊</li>
-      <li>Game Development 🎮</li>
-      <li>Artificial Intelligence 🤖</li>
-    </ul>
+  <p><strong>Why Python?</strong></p>
+  <ul>
+    <li>Easy to read and write</li>
+    <li>Tons of libraries and support</li>
+    <li>Used by Google, Netflix, NASA!</li>
+  </ul>
 
-    <p><strong>Why Python?</strong></p>
-    <ul>
-      <li>Easy to read and write</li>
-      <li>Tons of libraries and support</li>
-      <li>Used by Google, Netflix, NASA!</li>
-    </ul>
+  <h3>🖨️ The <code>print()</code> Function</h3>
+  <pre>print("Hello, Python!")</pre>
 
-    <p><strong>🖨️ The print() Function:</strong></p>
-    <pre><code>print("Hello, Python!")</code></pre>
-
-    <p><strong>📦 Variables and User Input:</strong></p>
-    <pre><code>name = input("What is your name? ")
+  <h3>📦 Variables and User Input</h3>
+  <pre>name = input("What is your name? ")
 age = input("How old are you? ")
-print("Hello " + name + "! You are " + age + " years old.")</code></pre>
+print("Hello " + name + "! You are " + age + " years old.")</pre>
 
-    <p><strong>🔢 Data Types:</strong></p>
-    <pre><code>age = 13
+  <h3>🔢 Data Types</h3>
+  <pre>age = 13
 height = 1.65
 name = "Viran"
 is_student = True
 
-print(type(age), type(height), type(name), type(is_student))</code></pre>
+print(type(age), type(height), type(name), type(is_student))</pre>
 
-    <p><strong>➕ Simple Math in Python:</strong></p>
-    <pre><code>num1 = 10
+  <h3>➕ Simple Math in Python</h3>
+  <pre>num1 = 10
 num2 = 5
 
 print("Sum:", num1 + num2)
 print("Difference:", num1 - num2)
 print("Product:", num1 * num2)
 print("Divide:", num1 / num2)
-print("Power:", num1 ** 2)</code></pre>
-  </div>
+print("Power:", num1 ** 2)</pre>
 
-  <div class="section">
-    <h3>⏰ Hour 2: Logic and Loops</h3>
-    <p><strong>🎯 Goal:</strong> Make decisions and repeat actions in Python.</p>
+  <h3>⏰ Hour 2: Logic and Loops</h3>
+  <p><strong>🎯 Goal:</strong> Learn how to make decisions and repeat actions in Python.</p>
 
-    <p><strong>🔀 If-Else Statements:</strong></p>
-    <pre><code>age = int(input("Enter your age: "))
+  <h3>🔀 If-Else Statements</h3>
+  <pre>age = int(input("Enter your age: "))
 if age >= 18:
     print("You're an adult!")
 else:
-    print("You're a minor.")</code></pre>
+    print("You're a minor.")</pre>
 
-    <p><strong>🤝 Comparison and Logical Operators:</strong></p>
-    <pre><code>x = 10
+  <h3>🤝 Comparison and Logical Operators</h3>
+  <pre>x = 10
 y = 5
 
 print("x == y?", x == y)
 print("x > y and y < 10?", x > y and y < 10)
 print("x < 15 or y == 3?", x < 15 or y == 3)
-print("not x == 10?", not x == 10)</code></pre>
+print("not x == 10?", not x == 10)</pre>
 
-    <p><strong>🔁 While Loop:</strong></p>
-    <pre><code>count = 1
+  <h3>🔁 While Loop</h3>
+  <pre>count = 1
 while count <= 5:
     print("Count is", count)
-    count += 1</code></pre>
+    count += 1</pre>
 
-    <p><strong>🔁 For Loop:</strong></p>
-    <pre><code>for i in range(1, 6):
-    print("Looping:", i)</code></pre>
+  <h3>🔁 For Loop</h3>
+  <pre>for i in range(1, 6):
+    print("Looping:", i)</pre>
 
-    <p><strong>🧩 Your First Function:</strong></p>
-    <pre><code>def greet(name):
+  <h3>🧩 Your First Function</h3>
+  <pre>def greet(name):
     print("Hello, " + name + "!")
 
-greet("Viran")</code></pre>
-  </div>
+greet("Viran")</pre>
 
-  <div class="section">
-    <h3>⏰ Hour 3: Your First Python Game</h3>
-    <p><strong>🎯 Goal:</strong> Build your very first game using everything you've learned.</p>
+  <h3>⏰ Hour 3: Your First Python Game</h3>
+  <p><strong>🎯 Goal:</strong> Build your very first game using everything you've learned.</p>
 
-    <p><strong>🎮 Guess the Number Game:</strong></p>
-    <ul>
-      <li>Use random to pick a secret number</li>
-      <li>Let the user guess until they get it right</li>
-      <li>Give helpful hints</li>
-    </ul>
+  <h3>🎮 Guess the Number Game</h3>
+  <p>Instructions:</p>
+  <ul>
+    <li>Use random to pick a secret number</li>
+    <li>Let the user guess until they get it right</li>
+    <li>Give helpful hints</li>
+  </ul>
 
-    <button class="toggle-button" onclick="toggleCode()">📂 Show Complete Code Structure</button>
-
-    <div id="full-code">
-      <h3>📄 Complete Game Code</h3>
-      <pre><code>import random
+  <pre>import random
 
 secret_number = random.randint(1, 20)
 guess = None
@@ -211,29 +241,14 @@ while guess != secret_number:
     elif guess > secret_number:
         print("Too high! Try again.")
     else:
-        print("🎉 Congratulations! You guessed it in", tries, "tries.")</code></pre>
-    </div>
-  </div>
+        print("🎉 Congratulations! You guessed it in", tries, "tries.")</pre>
 
   <div class="buttons">
-   <a href="index.html">🔁 Back to Homepage</a>
-    <a href="day2.html">Next Page (Day 2) ➡️</a>
+    <a href="index.html" class="button">🏠 Homepage</a>
+    <a href="day2.html" class="button">➡️ Next: Day 2</a>
   </div>
 
-  <script>
-    function toggleCode() {
-      const codeBlock = document.getElementById("full-code");
-      const button = document.querySelector(".toggle-button");
-      if (codeBlock.style.display === "none") {
-        codeBlock.style.display = "block";
-        button.textContent = "📁 Hide Complete Code Structure";
-      } else {
-        codeBlock.style.display = "none";
-        button.textContent = "📂 Show Complete Code Structure";
-      }
-    }
-  </script>
-<div class="footer">
+  <div class="footer">
     Developed by Teacher Theo
   </div>
 </body>
