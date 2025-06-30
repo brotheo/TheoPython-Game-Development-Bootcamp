@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python Game Dev Bootcamp Quiz</title>
 <style>
   body {
@@ -9,10 +10,12 @@
     background: #f0faff;
     padding: 40px;
     color: #333;
+    margin: 0;
   }
   h1 {
     text-align: center;
     color: #007acc;
+    margin-bottom: 0.5em;
   }
   #quiz-container {
     max-width: 700px;
@@ -74,33 +77,85 @@
     display: none;
   }
   .footer {
-      margin-top: auto;
-      padding: 15px;
-      font-size: 0.9em;
-      color: #666;
-      border-top: 1px solid #ccc;
-	  text-align:center
+    margin-top: 40px;
+    padding: 15px;
+    font-size: 0.9em;
+    color: #666;
+    border-top: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .buttons {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .buttons a {
+    background-color: #007acc;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  .buttons a:hover {
+    background-color: #005b99;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    body {
+      padding: 20px;
     }
-	
-	.buttons {
-      margin-top: 40px;
-      display: flex;
-      justify-content: space-between;
+    #quiz-container {
+      padding: 20px;
+      margin: 20px auto;
     }
-
+    #question {
+      font-size: 1.1em;
+    }
+    .option {
+      padding: 10px 12px;
+      font-size: 1em;
+    }
+    #next-btn, #restart-btn {
+      padding: 10px 20px;
+      font-size: 1em;
+    }
+    .buttons {
+      gap: 10px;
+    }
     .buttons a {
-      background-color: #007acc;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
+      padding: 10px 20px;
+      font-size: 1em;
     }
-
-    .buttons a:hover {
-      background-color: #005b99;
+  }
+  
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.8em;
     }
-
+    #quiz-container {
+      width: 100%;
+      padding: 15px;
+    }
+    .option {
+      font-size: 0.9em;
+      padding: 8px 10px;
+    }
+    .buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .buttons a {
+      width: 100%;
+      text-align: center;
+    }
+  }
 </style>
 </head>
 <body>
@@ -114,8 +169,18 @@
   <button id="restart-btn">Restart Quiz</button>
 </div>
 
+<div class="buttons">
+  <a href="index.html">🏠 Homepage</a>
+  <a href="day1.html">🚀 Start Day 1</a>
+</div>
+
+<div class="footer">
+  Developed by Teacher Theo
+</div>
+
 <script>
   const quizData = [
+  
     {
       question: "1. What does 'print()' do in Python?",
       options: ["Store a value", "Display output", "Take user input", "Create a loop"],
@@ -286,13 +351,6 @@
   // Initialize quiz
   loadQuestion();
 </script>
-<div class="buttons">
-  <a href="index.html">📝 Homepage</a>
-</div>
 
-
-<div class="footer">
-    Developed by Teacher Theo
-  </div>
 </body>
 </html>
