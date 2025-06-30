@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Day 5 – Build Your Own Game</title>
   <style>
     body {
@@ -28,35 +29,58 @@
       overflow-x: auto;
       border-left: 5px solid #00acc1;
     }
-    .buttons {
-      margin-top: 30px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .buttons a {
-      background-color: #007acc;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .buttons a:hover {
-      background-color: #005b99;
-    }
     .bonus {
       background: #fffae6;
       border-left: 5px solid #ffd700;
       padding: 10px;
       margin-top: 10px;
     }
-	.footer {
-      margin-top: auto;
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .button {
+      background-color: #007acc;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #005b99;
+    }
+    .quiz {
+      background-color: #ff6f00;
+    }
+    .quiz:hover {
+      background-color: #cc5800;
+    }
+    .footer {
+      margin-top: 60px;
       padding: 15px;
       font-size: 0.9em;
       color: #666;
       border-top: 1px solid #ccc;
-	   text-align:center
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
+      .button {
+        padding: 10px 15px;
+        font-size: 1em;
+      }
     }
   </style>
 </head>
@@ -190,12 +214,14 @@ sys.exit()</code></pre>
   </div>
 
   <div class="buttons">
-    <a href="Day4.html">⬅️ Previous Page (Day 4)</a>
-    <a href="index.html">🔁 Back to Homepage</a>
-	 <a href="quiz.html" class="button" style="background-color:#ff6f00; margin-left: 15px;">📝 Take the Quiz</a>
+    <a href="Day4.html" class="button">⬅️ Previous Page (Day 4)</a>
+    <a href="index.html" class="button">🏠 Back to Homepage</a>
+    <a href="quiz.html" class="button quiz">📝 Take the Quiz</a>
   </div>
-<div class="footer">
+
+  <div class="footer">
     Developed by Teacher Theo
   </div>
+
 </body>
 </html>
